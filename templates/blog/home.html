@@ -1,0 +1,38 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+
+<div class="post-entry">
+
+
+
+    {% for post in object_list %}
+
+    <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
+    <div class="fakeimg" style="height:200px;">Image</div>
+    <p>{{ post.body }}</p>
+    <br>
+
+
+    <!-- <h2><a href="">{{ post.title }}</a></h2>
+    <p>{{ post.body }}</p> -->
+    {% endfor %}
+    
+    <!-- Pagination -->
+    <div class='pagination justify-content-center'>
+        {% if page_obj.has_previous %}
+        <a href='{% url "home" %}?page={{ page_obj.previous_page_number }}'>Previous </a>
+        {% endif %}
+
+        <span class='mx-4'>
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+        <a href='{% url "home" %}?page={{ page_obj.next_page_number }}'> Next</a>
+        {% endif %}
+    </div>
+    <!-- END Pagination -->
+
+</div>
+
+{% endblock content %}
