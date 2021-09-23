@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
+
 
 # import dj_database_url
 # db_from_env = dj_database_url.config(conn_max_age=500)
@@ -155,3 +157,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+
